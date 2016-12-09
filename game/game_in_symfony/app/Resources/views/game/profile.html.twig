@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <p style='text-align:center;'>Profile</p>
+            <div class='centerDiv' style='width:300px;text-align:left;'>
+            	<label style='width:7em;'>Username:</label>{{ userData['username'] }}<br />
+		<label style='width:7em;'>Level:</label>{{ userData['level'] }}<br />
+		<label style='width:7em;'>Exp:</label>{{ userData['exp'] }}<br />
+		<label style='width:7em;'>Health:</label>{{ userData['health'] }} / {{ userData['max_health'] }}<br />
+		<label style='width:7em;'>Money:</label>{{ userData['money'] }}<br />
+		<label style='width:7em;'>Strength:</label>{{ userData['strength'] }}<br />
+		<label style='width:7em;'>Intelligence:</label>{{ userData['intelligence'] }}<br />
+		<label style='width:7em;'>Endurance:</label>{{ userData['endurance'] }}<br />
+                
+            
+            </div>
+            <div class='centerDiv' style='width:300px;text-align:left;'>
+                <br/><br/>
+                <table class='centerDiv' style='width:500px;'>
+                    <tr>
+                        <th style='width:30%;'>Attack Name</th>
+                        <th style='width:20%;'>Type</th>
+                    </tr>
+                        {% for attackKey,attackArr in attacks %}
+                            <tr>
+                                <td>{{ attackArr['name'] }}</td>
+                                <td>{{ attackArr['type'] }}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            </div>
+{% endblock %}
+
+{% block stylesheets %}
+    
+{% endblock %}

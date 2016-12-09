@@ -1,0 +1,13 @@
+{
+    "apiVersion": "0.1",
+    "swaggerVersion": "1.2",
+    "apis": [
+        {
+            "path": "/API.{format}"
+        }
+    ],
+    "info": {
+        "title": "RPG - War of Melle [RestFul API]",
+        "description": "This API will be used for integrating Role Playing Game - War of Melle to the front-end. "
+    }
+}

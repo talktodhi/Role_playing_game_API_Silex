@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p style='text-align:center;'>Register</p>
+    {% if userData['error'] is defined %}
+        <h4 style='text-align:center; color: yellow;'>{{ userData['error'] }}</h4>
+    {% endif %}
+    <form action='{{ path('wargame_do_register') }}' method='POST'>
+        Username: <input type='text' required name='username' /><br /><br />
+        Password: <input type='password' required name='password' /><br /><br />
+        <input type='submit' name='Register' value='Register' />
+    </form>
+{% endblock %}
+
+{% block stylesheets %}
+    
+{% endblock %}

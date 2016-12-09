@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class='formContainer centerDiv' style='text-align:left;width:400px;'>
+    <form action='' method='POST'>
+        {% for healingKey,healingArr in healing %}
+            <label style='width:20em;'>{{ healingArr['name']}} health kit (${{ healingArr['cost']}}, {{ healingArr['health']}} health)</label>
+            <input type='button' onClick="addHealth('{{ healingArr['cost']}}','{{ healingArr['health']}}');" name='Purchase' value='Purchase' /><br />
+        {% endfor %}
+    </form>
+</div>
+                
+<script type="text/javascript">
+function addHealth(cost,health){
+    
+    $.ajax({
+       type:    'POST',
+       async:   false,
+       url:     '{{ path('wargame_buyHealth') }}',
+       data:    {'cost':cost,'health':health},
+       success: function(data) {
+                var newdata =   data.split("--");
+                if(newdata[0] == 'success'){
+                    alert('Health brought by user successfully.');
+                    location.replace(location.pathname);
+                }
+                if(newdata[0] == 'error'){
+                    alert("Alert: "+newdata[1]);
+                    location.reload();
+                }
+                
+       },
+       error: function(XMLHttpRequest, textStatus, errorThrown) {
+           window.send_request_data="Ajax Error found-: \n \n"+XMLHttpRequest.responseText;
+           console.log("Ajax Error found-: \n \n"+XMLHttpRequest.responseText);
+       }
+    });
+}
+
+</script>
+{% endblock %}
+
+{% block stylesheets %}
+    
+{% endblock %}

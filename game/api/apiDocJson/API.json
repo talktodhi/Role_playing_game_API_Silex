@@ -1,0 +1,509 @@
+{
+    "basePath": "http://localhost/game/api/web/",
+    "swaggerVersion": "1.2",
+    "apiVersion": "0.1",
+    "resourcePath": "/API",
+    "apis": [
+        {
+            "path": "/buyAttack",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "API to buy attack for the user.",
+                    "nickname": "API to buy attack for the user.",
+                    "parameters": [
+                        {
+                            "paramType": "form",
+                            "name": "attackId",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "ID of the attack in integer value for buying."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "userId",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "ID of the user in integer value who wants to buy attack."
+                        }
+                    ],
+                    "notes": "This API will allow user to buy attacks for him self which he has not yet bought."
+                }
+            ]
+        },
+        {
+            "path": "/buyHealth",
+            "operations": [
+                {
+                    "method": "PUT",
+                    "summary": "Call this API for buying health",
+                    "nickname": "Buy Health",
+                    "parameters": [
+                        {
+                            "paramType": "form",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the user for whom to buy health"
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "cost",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Cost of health"
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "health",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Total health in that cost."
+                        }
+                    ],
+                    "notes": "User Registration"
+                }
+            ]
+        },
+        {
+            "path": "/checkLogin",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Call this API for user login.",
+                    "nickname": "Login",
+                    "parameters": [
+                        {
+                            "paramType": "form",
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Username of the user used for registration."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Password for the entered username."
+                        }
+                    ],
+                    "notes": "User Registration"
+                }
+            ]
+        },
+        {
+            "path": "/createAttack",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Create Attack",
+                    "nickname": "Create Attack",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "name",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Name of the attack. Attack is used as a weapon to fight against monster."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "combat_text",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Combat text of the attack used for showing after attack."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "type",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Type of the attack. i.e melee or magic"
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "power",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Power of the attack in integer."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "purchase_cost",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Cost of the attack to buy that attack by user in integer."
+                        }
+                    ],
+                    "notes": "This API will be used for creating attack for the user to fight against monsters."
+                }
+            ]
+        },
+        {
+            "path": "/createMonster",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Character Creation. (Monster Data Creation)",
+                    "nickname": "Create Monster",
+                    "parameters": [
+                        {
+                            "paramType": "form",
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Name of the monster(character) in string. "
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "level",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Level on which monster will be available to fight."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "max_health",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Max health of the monster  in integer."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "strength",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Strength of the monster in integer."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "intelligence",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Intelligence of the monster in integer."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "endurance",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Endurance of the monster in integer."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "attacks",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Attack type and power of the monster in JSON string with 2 array object element [ combat_text (string), type (melee or magic), power (integer)] "
+                        }
+                    ],
+                    "notes": "Call this API for creating monster( Character Creating) with whom user would like to fight."
+                }
+            ]
+        },
+        {
+            "path": "/getAllAttack",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "All Attack data.",
+                    "nickname": "All Attack Data",
+                    "notes": "This API will fetch all the data different types of attacks available for the user to fight against monsters."
+                }
+            ]
+        },
+        {
+            "path": "/getAllHealings",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "All Healing data.",
+                    "nickname": "All Healing Data",
+                    "notes": "This API will fetch all the data of all Healing (characters)."
+                }
+            ]
+        },
+        {
+            "path": "/getAllMonster",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "All Monster data.",
+                    "nickname": "All Monster Data",
+                    "notes": "This API will fetch all the data of all monsters (characters)."
+                }
+            ]
+        },
+        {
+            "path": "/getAllUsers",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Lists all users of the game",
+                    "nickname": "getAllUsers",
+                    "notes": "Returns a list of users new"
+                }
+            ]
+        },
+        {
+            "path": "/getAttack/{id}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Attack data.",
+                    "nickname": "User Attack Data",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the attack in integer value."
+                        }
+                    ],
+                    "notes": "This API will fetch all the data of attacks available for the user to fight against monsters."
+                }
+            ]
+        },
+        {
+            "path": "/getHealing/{id}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Healing data.",
+                    "nickname": "Healing Data",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the healing in integer value."
+                        }
+                    ],
+                    "notes": "This API will fetch all the healing data for provided ID."
+                }
+            ]
+        },
+        {
+            "path": "/getMonster/{id}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Monster data.",
+                    "nickname": "Monster Data",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the monster in integer value."
+                        }
+                    ],
+                    "notes": "This API will fetch all the data of monster (character) for provided monster ID."
+                }
+            ]
+        },
+        {
+            "path": "/getProfile/{id}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "User profile data.",
+                    "nickname": "register",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the username in integer value."
+                        }
+                    ],
+                    "notes": "This API will give you all the user data for provided user ID."
+                }
+            ]
+        },
+        {
+            "path": "/getUserNotSelectedAttack/{id}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "User Not Selected Attack data.",
+                    "nickname": "User Not Selected Attack Data",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the user in integer value."
+                        }
+                    ],
+                    "notes": "This API will fetch all the data of attacks that are not selected by the user to fight against monsters."
+                }
+            ]
+        },
+        {
+            "path": "/getUserSelectedAttack/{id}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "User Selected Attack data.",
+                    "nickname": "User Selected Attack Data",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the user in integer value."
+                        }
+                    ],
+                    "notes": "This API will fetch all the data of attacks selected by the user to fight against monsters."
+                }
+            ]
+        },
+        {
+            "path": "/register",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Call this API for new user registration",
+                    "nickname": "register",
+                    "parameters": [
+                        {
+                            "paramType": "form",
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Username of the user. This will be used for login purpose of the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "Password for the entered username."
+                        }
+                    ],
+                    "notes": "User Registration"
+                }
+            ]
+        },
+        {
+            "path": "/updateProfile",
+            "operations": [
+                {
+                    "method": "PUT",
+                    "summary": "Call this API for new user registration",
+                    "nickname": "register",
+                    "parameters": [
+                        {
+                            "paramType": "form",
+                            "name": "level",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "level of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "exp",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "EXP of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "health",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "Health of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "max_health",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "Max health of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "money",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "Money health of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "strength",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "Strength of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "endurance",
+                            "type": "integer",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "Endurance of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "attacks",
+                            "type": "string",
+                            "required": false,
+                            "allowMultiple": false,
+                            "description": "Attacks of the user in the game."
+                        },
+                        {
+                            "paramType": "form",
+                            "name": "id",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID of the user in the game."
+                        }
+                    ],
+                    "notes": "User Registration"
+                }
+            ]
+        }
+    ]
+}

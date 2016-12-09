@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    
+    {% if stage['showArea'] ==  '1' %}
+        <div class='formContainer centerDiv' style='width:350px;'>
+            <form action='' method='POST'>
+                {% for allMonster in stage['allMonsters'] %}
+                    <input type='radio' name='monster_id' value='{{ allMonster['id'] }}' />{{ allMonster['name'] }}<br />
+                {% endfor %}
+                <input type='submit' name='fight' value='Fight' />
+            </form>
+        </div>
+    {% endif %}
+    
+    
+    {% if stage['showArea'] ==  '2' %}
+        <table class='centerDiv' style='width:500px;border:1px solid rgb(0,0,0);'>
+            <tr>
+                <th style='width:50%;'>{{ stage['playerData']['username'] }}</th>
+                <th style='width:50%;'>{{ stage['selectedMonster']['name'] }}</th>
+            </tr>
+            <tr>
+                <td style='width:50%;' class='center'>{{ stage['playerData']['health'] }} / {{ stage['playerData']['max_health'] }}</td>
+                <td style='width:50%;' class='center'>{{ stage['selectedMonster']['health'] }} / {{ stage['selectedMonster']['max_health'] }}</td>
+            </tr>
+            {% if  stage['warAreaMessage'] is defined %}
+                <tr>
+                    <td colspan='2'>
+                        {{stage['warAreaMessage']|raw }}
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td colspan='2'>
+                    {% if stage['playerData']['attacks']|length > 0 %}
+                        <form action='' method='POST'>
+                        {% for playerAttackKey,playerAttackVal in stage['playerData']['attacks'] %}
+                            <input type='radio' name='attack_id' value='{{stage['allAttacks'][playerAttackKey]['id']}}' />{{stage['allAttacks'][playerAttackKey]['name']}}<br />
+			{% endfor %}
+			<input type='submit' name='attack' value='Attack' />
+			</form>
+                    {% else %}
+                        <h4>No attack for the player selected. Please select attack from the attack shop.</h4>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        
+    {% endif %}
+<script type="text/javascript">
+function buyAttack(id){
+    
+    $.ajax({
+       type:    'POST',
+       async:   false,
+       url:     '{{ path('wargame_buyAttack') }}',
+       data:    {'id':id},
+       success: function(data) {
+                var newdata =   data.split("--");
+                if(newdata[0] == 'success'){
+                    alert('Attack brought by user successfully.');
+                    location.replace(location.pathname);
+                }
+                if(newdata[0] == 'error'){
+                    alert("Alert: "+newdata[1]);
+                    location.reload();
+                }
+                
+       },
+       error: function(XMLHttpRequest, textStatus, errorThrown) {
+           window.send_request_data="Ajax Error found-: \n \n"+XMLHttpRequest.responseText;
+           console.log("Ajax Error found-: \n \n"+XMLHttpRequest.responseText);
+       }
+    });
+}
+
+</script>
+{% endblock %}
+
+{% block stylesheets %}
+    
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+            <div class='formContainer centerDiv' style='width:300px;text-align:left;'>
+		<form id="monsterForm" method='POST'>
+                    <label style='width:6em;'>Name:</label><input type='text' name='name' /><br />
+                    <label style='width:6em;'>Level:</label><input type='number' class="numbers" name='level' /><br />
+                    <label style='width:6em;'>Max Health:</label><input type='number' class="numbers" name='max_health' /><br />
+                    <label style='width:6em;'>Strength:</label><input type='number' class="numbers" name='strength' /><br />
+                    <label style='width:6em;'>Intelligence:</label><input type='number' class="numbers" name='intelligence' /><br />
+                    <label style='width:6em;'>Endurance:</label><input type='number' class="numbers" name='endurance' /><br />
+
+                    <label>Attacks:</label>
+                        <p style='margin-left:10px;'>
+
+                            <label style='width:4em;'>Text:</label><input type='text' name='attacks[1][combat_text]' /><br />
+                            <label style='width:4em;'>Type:</label>
+                                <select name='attacks[1][type]'>
+                                    <option value='melee'>Melee</option>
+                                    <option value='magic'>Magic</option>
+                                </select><br />
+
+                            <label style='width:4em;'>Power:</label><input type='number' name='attacks[1][power]' class="numbers" /><br /><br />
+                            <label style='width:4em;'>Text:</label><input type='text' name='attacks[2][combat_text]' /><br />
+                            <label style='width:4em;'>Type:</label>
+                                <select name='attacks[2][type]'>
+                                    <option value='melee'>Melee</option>
+                                    <option value='magic'>Magic</option>
+                                </select><br />
+
+                            <label style='width:4em;'>Power:</label>
+                                <input type='number' name='attacks[2][power]' class="numbers" /><br /><br />
+
+                        </p>
+                    <input type='button' name='create_monster' onClick="createMonster();" value='Create Monster' />
+		</form>
+            </div>
+                
+<script type="text/javascript">
+function createMonster(){
+    
+    if($.trim($("input[name='name']").val()) == ''){
+        alert('Name cannot be left blank.');
+        return false;
+    }
+    
+    if($.trim($("input[name='attacks[1][combat_text]']").val()) == ''){
+        alert('Combat text cannot be left blank.');
+        return false;
+    }
+    
+    if($.trim($("input[name='attacks[2][combat_text]']").val()) == ''){
+        alert('Combat text cannot be left blank.');
+        return false;
+    }
+
+    $.ajax({
+       type:    'POST',
+       async:   false,
+       url:     '{{ path('game_insertMonster') }}',
+       data:    $('#monsterForm').serialize(),
+       success: function(data) {
+                var newdata =   data.split("--");
+                if(newdata[0] == 'id'){
+                    alert('Monster created succesfully');
+                    location.replace(location.pathname);
+                }
+                if(newdata[0] == 'error'){
+                    alert("Alert: "+newdata[1]);
+                    location.reload();
+                }
+                
+       },
+       error: function(XMLHttpRequest, textStatus, errorThrown) {
+           window.send_request_data="Ajax Error found-: \n \n"+XMLHttpRequest.responseText;
+           console.log("Ajax Error found-: \n \n"+XMLHttpRequest.responseText);
+       }
+    });
+}
+
+</script>
+{% endblock %}
+
+{% block stylesheets %}
+    
+{% endblock %}

@@ -1,0 +1,8 @@
+{
+    "require": {
+        "silex/silex": "1.3.*",
+        "doctrine/dbal": "^2.5",
+		"jdesrosiers/silex-swagger-provider": "~1.0",
+        "jdesrosiers/silex-cors-provider": "~0.1"
+    }
+}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<table class='centerDiv' style='width:500px;'>
+    <tr>
+        <th style='width:30%;'>Name</th>
+        <th style='width:20%;'>Type</th>
+        <th style='width:35%;'>Price</th>
+        <th style='width:15%;'>&nbsp;</th>
+    </tr>
+	{% for attackKey,attackArr in attacks %}
+            <tr>
+                <td>{{ attackArr['name'] }}</td>
+                <td>{{ attackArr['type'] }}</td>
+                <td>{{ attackArr['purchase_cost'] }}</td>
+                <td>	
+                    <input type='submit'  onClick="buyAttack('{{ attackArr['id'] }}');" name='buy' value='Buy' />
+                </td>
+            </tr>
+        {% endfor %}
+</table>
+                
+<script type="text/javascript">
+function buyAttack(id){
+    
+    $.ajax({
+       type:    'POST',
+       async:   false,
+       url:     '{{ path('wargame_buyAttack') }}',
+       data:    {'id':id},
+       success: function(data) {
+                var newdata =   data.split("--");
+                if(newdata[0] == 'success'){
+                    alert('Attack brought by user successfully.');
+                    location.replace(location.pathname);
+                }
+                if(newdata[0] == 'error'){
+                    alert("Alert: "+newdata[1]);
+                    location.reload();
+                }
+                
+       },
+       error: function(XMLHttpRequest, textStatus, errorThrown) {
+           window.send_request_data="Ajax Error found-: \n \n"+XMLHttpRequest.responseText;
+           console.log("Ajax Error found-: \n \n"+XMLHttpRequest.responseText);
+       }
+    });
+}
+
+</script>
+{% endblock %}
+
+{% block stylesheets %}
+    
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class='formContainer centerDiv' style='width:300px;text-align:left;'>
+        <form id="attackForm" method='POST'>
+            <label style='width:6em;'>Name:</label><input type='text' name='name' /><br />
+            <label style='width:6em;'>Combat Text:</label><input type='text' name='combat_text' /><br />
+            <label style='width:6em;'>Type:</label>
+                <select name='type'>
+                    <option value='melee'>Melee</option>
+                    <option value='magic'>Magic</option>
+                </select><br />
+            <label style='width:6em;'>Power:</label><input class="numbers" value="5" type='number' name='power' /><br />
+            <label style='width:6em;'>Purchase Cost:</label><input class="numbers" value="5" type='number' name='purchase_cost' /><br />
+            <input type='button' onClick="createAttack();" name='create_attack' value='Create Attack' />
+        </form>
+    </div>
+    
+<script>
+function createAttack(){
+    
+    if($.trim($("input[name='name']").val()) == ''){
+        alert('Name cannot be left blank.');
+        return false;
+    }
+    
+    if($.trim($("input[name='combat_text']").val()) == ''){
+        alert('Combat text cannot be left blank.');
+        return false;
+    }
+
+    $.ajax({
+       type:    'POST',
+       async:   false,
+       url:     '{{ path('wargame_insertAttack') }}',
+       data:    $('#attackForm').serialize(),
+       success: function(data) {
+                var newdata =   data.split("--");
+                if(newdata[0] == 'id'){
+                    alert('Attcak created succesfully');
+                    location.replace(location.pathname);
+                }
+                if(newdata[0] == 'error'){
+                    alert("Alert: "+newdata[1]);
+                    location.reload();
+                }
+                
+       },
+       error: function(XMLHttpRequest, textStatus, errorThrown) {
+           window.send_request_data="Ajax Error found-: \n \n"+XMLHttpRequest.responseText;
+           console.log("Ajax Error found-: \n \n"+XMLHttpRequest.responseText);
+       }
+    });
+}
+
+</script>
+{% endblock %}
