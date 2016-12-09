@@ -19,6 +19,13 @@
                 <li><a href="{{ path('wargame_do_logout') }}">Logout</a></li>
             </ul>
         </div>
+        {% else %}
+        <div id='menu'>
+            <ul>
+                <li><a href="{{ path('wargame_register') }}">Register</a></li>
+                <li><a href="{{ path('wargame_login') }}">Login</a></li>
+            </ul>
+        </div>
         {% endif %}
         {% block body %}{% endblock %}
         </div>

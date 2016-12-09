@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    
+    <h4> War Ground </h4>
     {% if stage['showArea'] ==  '1' %}
         <div class='formContainer centerDiv' style='width:350px;'>
+            
+            {% if stage['allMonsters']|length > 0 %}
             <form action='' method='POST'>
                 {% for allMonster in stage['allMonsters'] %}
                     <input type='radio' name='monster_id' value='{{ allMonster['id'] }}' />{{ allMonster['name'] }}<br />
                 {% endfor %}
                 <input type='submit' name='fight' value='Fight' />
             </form>
+            {% else %}
+                <h5>No Monster to fight with. Please create monster's first. </h5>
+            {% endif %}
         </div>
     {% endif %}
     

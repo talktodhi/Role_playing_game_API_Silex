@@ -58,12 +58,6 @@ class GameController extends Controller
      */
     public function registerAction( Request $request )
     {
-        $sessionTemp            =   $request->getSession();      
-        $profile_idTemp         =   $sessionTemp->get('id');
-        if(!isset($profile_idTemp)){
-            $userData['error']  =   'Please Login Again.';
-            return $this->render('game/index.html.twig',array('userData'=>$userData,'showMenu'=>'0'));
-        }
         $session = $request->getSession();
         $session->remove('id');
         return $this->render('game/register.html.twig',  array('showMenu'=>'0'));
@@ -83,12 +77,6 @@ class GameController extends Controller
      */
     public function registerDoAction( Request $request )
     {
-        $sessionTemp            =   $request->getSession();      
-        $profile_idTemp         =   $sessionTemp->get('id');
-        if(!isset($profile_idTemp)){
-            $userData['error']  =   'Please Login Again.';
-            return $this->render('game/index.html.twig',array('userData'=>$userData,'showMenu'=>'0'));
-        }
         $gameService        =   new gameServiceClass();
         
         $data               =   array();
@@ -97,7 +85,7 @@ class GameController extends Controller
         
         $userData           =   $gameService->register($data);
         
-        return $this->render('game/register.html.twig',  array('showMenu'=>'0'));
+        return $this->render('game/index.html.twig',  array('showMenu'=>'0'));
     }
     
     /**
